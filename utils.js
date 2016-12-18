@@ -20,7 +20,7 @@ var unique = function (arr) {
 };
 
 
-var a = [1,2,3,{x:1}];
+var a = [1, 2, 3, {x: 1}];
 //slice做的是浅拷贝, concat做的也是浅拷贝
 var b = a.slice(0);
 var c = a.concat([4]);
@@ -49,4 +49,38 @@ var deepCody = function (source) {
 //$.extend() 第一个参数 标示是否深拷贝
 
 
+//////////////////////////////////////////////////////////
+//hook函数
+//////////////////////////////////////////////////////////
 
+//进行数据入库，并出发更新
+var log = function (msgs, type) {
+    //
+};
+
+// 仅拦截 console 部分方法, 未涉及到的方法保持不变
+['log', 'error', 'warn', 'debug', 'info'].forEach(function (item) {
+    var oldMethod = console[item];
+    console[item] = function () {
+        oldMethod.apply(console, [].slice.call(arguments));
+        log(arguments, item)
+    }
+});
+
+//////////////////////////////////////////////////////////
+//无破坏性hook函数 应用了es6特性
+//////////////////////////////////////////////////////////
+var log = function (msgs, type) {
+
+}
+var oldConsole = console;
+var handle = {
+    apply: function (target, ctx, args) {
+        log(args, target);
+        return Reflect.apply(target, ctx, args);
+    }
+};
+
+console.log = new Proxy(oldConsole.log, handle);
+
+console.log('12');
