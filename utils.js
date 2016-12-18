@@ -53,7 +53,7 @@ var deepCody = function (source) {
 //hook函数
 //////////////////////////////////////////////////////////
 
-//进行数据入库，并出发更新
+//hook函数
 var log = function (msgs, type) {
     //
 };
@@ -84,3 +84,34 @@ var handle = {
 console.log = new Proxy(oldConsole.log, handle);
 
 console.log('12');
+
+if (Reflect && Proxy) {
+
+}
+
+
+//////////////////////////////////////////////////////////
+//replace format字符串
+//////////////////////////////////////////////////////////
+//string format
+/**
+ * string format
+ * @type {Function|*}
+ */
+String.prototype.format = String.prototype.format || function () {
+        var args = arguments;
+        if (args.length == 0) {
+            return "";
+        }
+
+        var str = this.toString();
+
+
+        return str.replace(/\$(\d+)/g, function (filterStr, filterNum) {
+            var newStr = args[filterNum];
+            return newStr != undefined ? newStr : filterStr;
+        })
+    };
+
+var newStr = "$1,$2,$,$$0$".format("qq", "ww");
+print(newStr);
