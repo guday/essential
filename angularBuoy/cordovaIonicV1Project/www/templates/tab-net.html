@@ -1,0 +1,54 @@
+<ion-view view-title="模拟Net">
+  <ion-content class="padding">
+    <h2>模拟Net</h2>
+
+    <p>
+      实现:<br>
+
+    </p>
+
+    <ul class="list">
+      <li class="item item-toggle">
+        自动网络请求接口，并且成功
+        <label class="toggle toggle-assertive" ng-click="onClickLog()">
+          <input type="checkbox" ng-checked="autoLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-toggle">
+        自动网络请求接口，并且失败
+        <label class="toggle toggle-assertive" ng-click="onClickFullLog()">
+          <input type="checkbox" ng-checked="autoFullLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-toggle">
+        自动网络请求资源，并且成功
+        <label class="toggle toggle-assertive" ng-click="onClickFullLog()">
+          <input type="checkbox" ng-checked="autoFullLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-toggle">
+        自动网络请求资源，并且失败
+        <label class="toggle toggle-assertive" ng-click="onClickFullLog()">
+          <input type="checkbox" ng-checked="autoFullLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+    </ul>
+
+  </ion-content>
+</ion-view>

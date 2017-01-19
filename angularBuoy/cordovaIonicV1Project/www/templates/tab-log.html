@@ -1,0 +1,43 @@
+<ion-view view-title="模拟Log">
+  <ion-content class="padding">
+    <h2>模拟Log</h2>
+
+    <p>
+      实现:<br>
+      劫持console的log,info,warn,error
+    </p>
+
+    <ul class="list">
+      <li class="item item-toggle">
+        自动打console.log
+        <label class="toggle toggle-assertive" ng-click="onClickLog()">
+          <input type="checkbox" ng-checked="autoLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-toggle">
+        四种log循环打
+        <label class="toggle toggle-assertive" ng-click="onClickFullLog()">
+          <input type="checkbox" ng-checked="autoFullLog">
+
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+    </ul>
+
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">输入log内容</span>
+        <input type="text" ng-model="data.userLog">
+      </label>
+    </div>
+    <button class="button button-block button-positive" ng-click="onClickUserLog()">
+      打印输入的log
+    </button>
+  </ion-content>
+</ion-view>
