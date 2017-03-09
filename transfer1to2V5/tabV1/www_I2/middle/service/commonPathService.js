@@ -6,9 +6,9 @@ import {ListDetailPage} from '../transferController';
 
 @Injectable()
 export class CommonPathService {
-  constructor(_app) {
+  constructor(_app, state) {
     this.app = _app;
-    // this.state = state;
+    this.state = state;
 
   }
 
@@ -66,12 +66,12 @@ export class CommonPathService {
 
   //$location.path().search();
   search(obj) {
-    if (obj ) {
+    if (obj) {
       for (var i in obj) {
         this.param[i] = obj[i];
       }
     } else {
-      return this.state.search();
+      return this.state.data;
     }
   }
 

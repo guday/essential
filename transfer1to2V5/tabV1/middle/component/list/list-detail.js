@@ -8,7 +8,7 @@ class ListDetailController {
     this.detail = this.StaticData.get(this.$stateParams.id);
 
     var search = this.$location.search();
-    console.log(sea)
+    console.log(search)
 
   }
 }

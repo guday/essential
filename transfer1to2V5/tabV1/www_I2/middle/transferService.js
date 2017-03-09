@@ -10,7 +10,7 @@ StaticData.annotations = [
 ];
 
 
-// import {$stateParams} from './service/stateParams';
+import {Location2} from './service/stateParams';
 //全新service
 import {CommonPathService} from './service/commonPathService';
 
@@ -19,4 +19,4 @@ var $location = CommonPathService;
 var $stateParams = NavParams;
 
 
-export {StaticData, $location, CommonPathService, $stateParams};
+export {StaticData, $location, CommonPathService, $stateParams, Location2};

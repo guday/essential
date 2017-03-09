@@ -1,5 +1,5 @@
-import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {NgModule, ErrorHandler, forwardRef} from '@angular/core';
+import {IonicApp, IonicModule, IonicErrorHandler, NavParams} from 'ionic-angular';
 
 import {Init} from './pages/basic/init';
 import {MainTabs} from './pages/basic/mainTabs';
@@ -8,7 +8,7 @@ import {MainTabs} from './pages/basic/mainTabs';
 // import {$stateParams} from './middle/service/stateParams';
 import {HomePage, ListPage, ListDetailPage} from './middle/transferController';
 // import {CommonPathService} from './middle/service/commonPathService';
-import {StaticData, CommonPathService} from './middle/transferService';
+import {StaticData, CommonPathService, Location2, $location} from './middle/transferService';
 
 
 import {AboutPage} from './pages/about/about';
@@ -45,9 +45,12 @@ var AppModule = NgModule({
   providers: [
     StaticData,
     CommonPathService,
+    Location2,
+    $location,
     // $stateParams,
     // $state,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    // {provide: NavParams, useClass: forwardRef(() => Location2)},
   ]
 }).Class({
   constructor: function () {

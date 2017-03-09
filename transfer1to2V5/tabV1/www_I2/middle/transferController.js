@@ -8,6 +8,7 @@ import {ListDetailController, ListDetailDirective} from '../../i2Transfer/compon
 // import {ListController, ListDirective} from '../../middle/component/list/list';
 // import {ListDetailController, ListDetailDirective} from '../../middle/component/list/list-detail';
 
+import {Location2} from './service/stateParams'
 var HomePage = HomeController;
 var HomeObj = HomeDirective();
 var HomeTemplate = transferHtmlStr(HomeObj.template);
@@ -37,7 +38,10 @@ var ListDetailTemplate = transferHtmlStr(ListDetailObj.template);
 ListDetailPage.annotations = [
   new Component({
     selector: "page-list-detail",
-    template: ListDetailTemplate
+    template: ListDetailTemplate,
+    providers: [
+      Location2
+    ]
   })
 ];
 
