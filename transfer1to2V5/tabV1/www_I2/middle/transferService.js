@@ -1,30 +1,22 @@
-import {Injectable, forwardRef} from '@angular/core';
-
+import {Injectable} from '@angular/core';
+import { NavParams} from 'ionic-angular';
 
 //middle过来的
-// import {StaticData} from '../../i2Transfer/service/static';
-import {StaticData} from '../../middle/service/static';
+import {StaticData} from '../../i2Transfer/service/static';
+// import {StaticData} from '../../middle/service/static';
+
 StaticData.annotations = [
   new Injectable()
 ];
 
-// @Injectable();
-import {App} from 'ionic-angular';
+
+// import {$stateParams} from './service/stateParams';
 //全新service
 import {CommonPathService} from './service/commonPathService';
-import {$stateParams} from './service/stateParams';
+
 
 var $location = CommonPathService;
-// var $stateParams = NavParams;
+var $stateParams = NavParams;
 
-// var $state = function () {
-//   return CommonPathService;
-// };
-// var $stateParams = function () {
-//   return NavParams;
-// };
-
-// var $state = forwardRef(() => CommonPathService);
-// var $stateParams = forwardRef(() => NavParams);
 
 export {StaticData, $location, CommonPathService, $stateParams};

@@ -1,20 +1,19 @@
 import {App, NavParams} from 'ionic-angular';
-import {Injectable, ReflectiveInjector} from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 
 // import {$stateParams} from './stateParams';
 import {ListDetailPage} from '../transferController';
 
 @Injectable()
 export class CommonPathService {
-  constructor(_app, state) {
+  constructor(_app) {
     this.app = _app;
-    this.state = state;
+    // this.state = state;
 
   }
 
   //$state.go
   go(to, param, option) {
-    // this.app = ReflectiveInjector.resolveAndCreate([App]).get(App);
     var pageMap = {
       'tab.detail': ListDetailPage
     }
@@ -90,5 +89,5 @@ export class CommonPathService {
 }
 
 CommonPathService.parameters = [
-  [App],[NavParams]
+  [App]
 ];

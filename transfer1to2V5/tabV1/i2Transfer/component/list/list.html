@@ -1,0 +1,16 @@
+<ion-view view-title="list">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" *ngFor="let item of list" type="item-text-wrap"  (click)="onClickItem(item)">
+        <img [src]="item.face">
+        <h2>{{item.name}}</h2>
+        <p>{{item.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" (click)="remove(item)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

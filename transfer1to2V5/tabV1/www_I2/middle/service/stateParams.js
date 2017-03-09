@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, forwardRef} from '@angular/core';
 // import {NavParams} from 'ionic-angular';
 
 
@@ -17,7 +17,7 @@ export class $stateParams {
   }
 
 }
-//
+
 // $stateParams.parameters = [
 //   [NavParams]
-// ]
+// ];

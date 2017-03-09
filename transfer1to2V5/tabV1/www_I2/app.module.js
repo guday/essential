@@ -4,15 +4,14 @@ import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {Init} from './pages/basic/init';
 import {MainTabs} from './pages/basic/mainTabs';
 
-// // import {HomePage} from './pages/home/home';
-// import {StaticData} from './middle/transferService';
-// import {CommonPathService} from './middle/service/commonPathService'
-import {HomePage, ListPage, ListDetailPage, StaticData} from './middle/bridge';
-import {CommonPathService} from './middle/service/commonPathService';
+
 // import {$stateParams} from './middle/service/stateParams';
+import {HomePage, ListPage, ListDetailPage} from './middle/transferController';
+// import {CommonPathService} from './middle/service/commonPathService';
+import {StaticData, CommonPathService} from './middle/transferService';
+
 
 import {AboutPage} from './pages/about/about';
-// import {ListPage} from './pages/list/list';
 
 //兼容组件
 import  {IonViewComponent} from  './components/ion/ionView'
@@ -30,7 +29,6 @@ var AppModule = NgModule({
 
     IonViewComponent,
     IonOptionButtonComponent,
-    // ListDetailPage
   ],
   imports: [
     IonicModule.forRoot(Init)
