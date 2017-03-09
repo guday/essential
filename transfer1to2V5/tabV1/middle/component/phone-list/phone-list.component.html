@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <!--Body content-->
+            <ul class="phones">
+                <li class="thumbnail phone-list-item" ng-click="$ctrl.onClickPageOnly()">page only</li>
+                <!--<li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp"-->
+                <li ng-repeat="phone in $ctrl.phones"
+                    class="thumbnail phone-list-item">
+                    <a class="thumb" ng-click="onClickPhone(phone)">
+                        <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}"/>
+                    </a>
+                    <a ng-click="onClickPhone(phone)">{{phone.name}}</a>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
