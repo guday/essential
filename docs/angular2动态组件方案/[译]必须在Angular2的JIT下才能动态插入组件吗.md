@@ -1,16 +1,16 @@
-#[译]必须在Angular2的JIT下才能动态插入组件吗
-######seraphwu@20171013 / 20171024
-######[原文地址:https://medium.com/@isaacplmann/if-you-think-you-need-the-angular-2-runtime-jit-compiler-2ed4308f7515](https://medium.com/@isaacplmann/if-you-think-you-need-the-angular-2-runtime-jit-compiler-2ed4308f7515)
-##当然不是
+# [译]必须在Angular2的JIT下才能动态插入组件吗
+###### seraphwu@20171013 / 20171024
+###### [原文地址:https://medium.com/@isaacplmann/if-you-think-you-need-the-angular-2-runtime-jit-compiler-2ed4308f7515](https://medium.com/@isaacplmann/if-you-think-you-need-the-angular-2-runtime-jit-compiler-2ed4308f7515)
+## 当然不是
 * 很久以前，我是这么认为的。
 * 但是经过诸多的调试，踩了坑，碰了壁。发现在AOT下也可以有很多的方法动态插入组件。
 
-##所以
+## 所以
 * 下文中，我将列出六种动态插入组件的方法。
 * 其中一种是在JIT下插入的，剩下五种是在AOT下插入的。
 * 相信看完本文，AOT下的任何动态插入组件需求，都不在话下了。
 
-##1.只能JIT下动态插入的方法
+## 1.只能JIT下动态插入的方法
 * [例子的链接(plunker)](http://plnkr.co/edit/Fca9sWr058gza4qXinjO?p=preview)
 * 第一个例子是只能JIT下实现动态插入(在AOT编译后，会运行时报错)，如果其他例子不适合你的项目，使用这个例子的方法也还马虎。
 * 核心实现，直接上代码了：
