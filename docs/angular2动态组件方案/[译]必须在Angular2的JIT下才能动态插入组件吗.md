@@ -65,7 +65,7 @@
 * 这种方式的动态插入组件，写了很多代码，感觉在写Angular2的框架，而不是使用其框架了，毕竟官方的文档也没提到这些写法。
 * 下文描述的方法，都是在AOT下可用的动态插入组件了。
 
-##2.使用\*ngIf 或者 \*ngSwitch
+## 2.使用\*ngIf 或者 \*ngSwitch
 * [例子的链接(plunker)](http://plnkr.co/edit/WDAe0pq6kH9o9q2tcgGp?p=preview)
 * 这种方案是最容易理解的，动态插入组件，不就是根据条件判断，在指定位置插入预定义的组件嘛。
 * 但这种方案有个缺陷，即父组件(可能是页面，或者组件)需要列出每个可能动态插入的组件，不利于扩展和组件化。
@@ -80,7 +80,7 @@
 	
 	```
 	
-##3.在ViewContainerRef 中插入组件
+## 3.在ViewContainerRef 中插入组件
 * [例子的链接(plunker)](http://plnkr.co/edit/7u79EAWmWICPi8gWy0lH?p=preview)
 * ```ViewContainerRef``` 是Angular的核心模块，注入后 对应的 宿主 Element。
 * 这个例子中：
@@ -106,7 +106,7 @@
 * 这个方案的缺点是：组件只能被插入到父组件 ```SwitchComponent``` 的template的根部。
 * 备注： 例子3，4，5中，动态插入的组件 ```FirstInsertedComponent``` 和 ```SecondInsertedComponent``` 都需要在 ```AppModule```的 ```entryComponents``` 中申明。
 
-##4.在view template 中插入组件
+## 4.在view template 中插入组件
 * [例子的链接(plunker)](http://plnkr.co/edit/Umx4RYoGB5nGlx9jFTNx?p=preview)
 * ```view template``` 即组件的 template 元数据属性。
 * 这个例子中：
@@ -134,7 +134,7 @@
 	
 	```
 
-##5.在 content 中插入组件
+## 5.在 content 中插入组件
 * [例子的链接(plunker)](http://plnkr.co/edit/20tVkZfMiqymXiy7HOX7?p=preview)
 * ```content``` 即组件的 ```ng-content``` ， 类似angular1中的directive 的 ```ng-transclude```.
 * 这里例子中：
@@ -168,12 +168,12 @@
 	
 	* 获得插入位置引用后，就可以在位置上创建动态组件了。
 
-##承上启下
+## 承上启下
 * 3，4，5三个例子都是使用高大上的 ```ComponentFactorResolver``` 接口，来在指定位置创建插入的组件的。
 * 而我们本意是希望在 组件的 ```template``` 之外，扩展其html的支持。即在组件之外，写该组件相关的html。
 * 所以，看看下面的template方法
 
-##6.使用templates！
+## 6.使用templates！
 
 * [例子的链接(plunker)](http://plnkr.co/edit/sxrnnAYjPMXi7h7Ur2ve?p=preview)
 * Angular2 的 ```Templates``` 超级好用，我花了6个月的时间，才领悟到其内涵。
@@ -219,16 +219,16 @@
 	* 很强大
 	* 关键是，AOT下也能运行。
 
-##总结
+## 总结
 * 我(作者)在JAMS工作，主要做MVP系统(IT自动化和优化解决方案)，在用Angular2在写web客户端。 觉得Angular2棒棒哒。
 * 本文虽然提供了六种方法实现动态插入组件，相信还有很多其他方法。
 * 同时，如果你的需求要求必须在运行时编译(JIT)，可以回复我，讨论讨论。
 
-##作者补充
+## 作者补充
 * 只能在运行时编译(JIT)中，才能 动态的改变 ```component``` 的 ```metadata```。AOT下是无法改 ```metadata``` 的。
 * Mikulas Hayek 提到了新一种方法，将DOM 元素插入到组件中，[看看他是怎么说的](https://medium.com/@necroskillz/hi-f8f81a2a10d3)。
 	
-##译者补充
+## 译者补充
 * 本文作者主要提供AOT下，动态插入组件的五种方法，和JIT下的一种方法。
 * 作者说 ```动态插入组件```， 而不是 ```动态编译```。
 * 但是，往往很多项目需要用到动态编译html，类似angular1中的 compile能力。
