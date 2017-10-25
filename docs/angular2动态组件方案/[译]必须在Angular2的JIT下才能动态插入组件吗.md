@@ -17,7 +17,7 @@
 	* 通过 ```createDynamicComponent``` 函数
 		* 动态创建一个组件模板。(函数里创建组件，看起来是不是很恶心)
 	
-		```
+		```js
 		private createDynamicComponent(): Type<any> {
 		  @Component({
 		    template: ‘<p>This was inserted!</p>’
@@ -36,7 +36,7 @@
 		* 使用 ```Compiler``` 在JIT下 创建该组件的工厂实例。
 		* 然后返回这个组件的工厂实例
 	
-		```
+		```js
 		_createAdHocComponentFactory(component: any): ComponentFactory<any> {
 		  @NgModule({
 		    declarations: [component],
@@ -55,7 +55,7 @@
 	* 运用上述两个函数，创建了 组件工厂实例
 		* 通过 ```createComponent``` 接口，取得组件的实例，插入到 ```viewContainerRef``` 的引用位置
 	
-		```
+		```js
 		let component = this.createDynamicComponent();
 	    let componentFactory = this.adHocComponentFactoryCreator.getFactory(component);
 	    let componentRef = this.viewContainerRef.createComponent(componentFactory);
@@ -70,7 +70,7 @@
 * 这种方案是最容易理解的，动态插入组件，不就是根据条件判断，在指定位置插入预定义的组件嘛。
 * 但这种方案有个缺陷，即父组件(可能是页面，或者组件)需要列出每个可能动态插入的组件，不利于扩展和组件化。
 
-	```
+	```js
 	<div *ngIf="toggle">
 	  <my-first-inserted-component></my-first-inserted-component>
 	</div>
@@ -87,14 +87,14 @@
 	* ```SwitcherComponent``` 不需要知道要插入哪个组件，而由特定应用场景决定。 
 	* ```AppComponent``` 通过参数将要动态插入的组件传给 ```SwitchComponent```。
 
-	```
+	```js
 	<my-switcher-component [insertedComponent]="insertedComponent"></my-switcher-component>
 
 	```
 	
 	* 这样的话，动态插入的逻辑，被封装到组件中，核心逻辑在函数：```SwitcherComponent.renderComponent()```
 	
-	```
+	```js
 	renderComponent() {
 	  let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.insertedComponent);
 	  this.viewContainerRef.clear();
@@ -113,7 +113,7 @@
 	* 可以将组件插入到父组件的任何位置。
 	* 只需要在父组件```SwitcherComponent```的 template 中，定义插入的位置  ```#insertionPoint```。
 
-	```
+	```html
 	<div><ul>
 		<li><span #insertionPoint></span></li>
 	</ul></div>
@@ -122,14 +122,14 @@
 
 	* 再用下述语法通过 ```ViewContainerRef ``` 将插入位置 ```#insertionPoint ``` 加载到变量 ```insertionPoint``` 上。
 
-	```
+	```js
 	@ViewChild('insertionPoint', { read: ViewContainerRef }) public insertionPoint: ViewContainerRef;
 	
 	```
 	
 	* 然后使用 ```this.insertionPoint.createComponent``` 创建动态组件。
 
-	```
+	```js
 	let componentRef = this.insertionPoint.createComponent(componentFactory);
 	
 	```
@@ -142,7 +142,7 @@
 	* 动态组件的不是在父组件的申明中插入的，而是在父组件的应用实例的 ```ng-content``` 中插入。
 	* 首先，父组件 ```SwitchComponent``` 的template中使用 ```ng-content```。
 
-	```
+	```js
 	@Component({
 	  selector: 'my-switcher-component',
 	  template: `<b>Inserted Component:</b>
@@ -152,7 +152,7 @@
 	```
 	* 然后，在应用父组件 ```<my-switcher-component>``` 时，在其内容中 写组件插入位置的引用 ```#insertionPoint```。
 
-	```
+	```html
 	<my-switcher-component [insertedComponent]="insertedComponent">
 	  Content: <i><span #insertionPoint></span></i> (Cool, huh?)
 	</my-switcher-component>
@@ -161,7 +161,7 @@
 	
 	* 最后，在父组件中使用 ```@ContentChild``` (而不是```@ViewChild```) 来获取动态插入的位置。
 
-	```
+	```js
 	@ContentChild('insertionPoint', { read: ViewContainerRef }) public insertionPoint: ViewContainerRef;
 	
 	```
@@ -182,7 +182,7 @@
 	
 	* 在AppComponent 的template定义中: ```<my-switcher-component>``` 标签中包含了 ```<template>``` 标签。
 
-	```
+	```html
 	<my-switcher-component>
 	  <template #itemTemplate let-item>
 	    <b>{{ item.label }}:</b> {{item.value}}<br/>
@@ -203,7 +203,7 @@
 	* 这样的话，通过 ```<template>``` 内部的html，即可以使用 ```AppComponent``` 下的数据，也可以通过 ```item``` 变量，来使用 ```SwitchComponent``` 组件中的数据。
 	* 再看 ```SwitchComponent``` 的主要实现。 通过 ```@ContentChild``` 和关键词 ```itemTemplate```， 实现组件内和组件外的 ```<template>``` 的相互绑定
 
-	```
+	```html
 	<template [ngTemplateOutlet]="itemTemplate"
   [ngOutletContext]="{ $implicit: item }"></template>
   
