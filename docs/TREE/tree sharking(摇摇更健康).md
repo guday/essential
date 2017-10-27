@@ -1,6 +1,11 @@
 # tree sharking(摇摇更健康)
 ###### seraphwu@20171024
 
+## 概述
+* 说说什么是tree sharking。
+* 说说模块化的语法。
+* 做个总结。
+
 ## 什么是tree sharking
 * 想象一下秋日里的树，摇一摇树干，落下一片片枯叶。
 * 对js的语法树进行引用遍历，去掉静态分析后执行不了的代码，就是tree sharking了。
@@ -291,4 +296,6 @@
 * 问题2：既然require能代替import，那 ```tree sharking``` 还能运行吗?
 	* 不能
 	* 上文解释过，使用require，会导致被require文件被执行，产生的 ```side effect``` 无法评估，故无法删代码。
-* 问题3：听说过 closure 么，相比于uglify，他有更激进的无效代码删除方案，有空，为何不自己去看看呢。
+* 问题3：听说过 ```closure``` 么，相比于uglify，他有更激进的无效代码删除方案，有空，为何不自己去看看呢。
+* 问题4：ES6 Module 的能力，还带来了什么有趣的应用。
+	* webpack3 的 [```Scope Hosting```(作用域提升)](https://zhuanlan.zhihu.com/p/27828233)，可提高代码执行效率。
