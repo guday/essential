@@ -11,14 +11,14 @@
 
 * 关心Angular2中怎么使用shadow dom。
 	* 默认是模拟 ```shadow dom```，而未使用原生能力。
-	* 怎么强制使用 ```shadow dom```。
+	* 怎么使用 ```shadow dom``` 原生能力。
 
 ## shadow dom：概念
 
 * ```Shadow DOM``` 是Web Components规范中的一个组成部分，主要作用是提供DOM、样式、脚本的封装。
 * 例子：
 	* 在w3c的video例子中：[http://www.w3school.com.cn/tiy/t.asp?f=html5_video](http://www.w3school.com.cn/tiy/t.asp?f=html5_video)
-	* 看下video只是一个的标签
+	* 看下video只是一个的标签。
 
 		![MacDown Screenshot](shadow-1.png)
 
@@ -88,20 +88,22 @@
 	* 说好的要跟 React 的 ```Vurtual DOM``` 比快的！
 
 * 原来，Angular2 的默认配置是 ```ViewEncapsulation.Emulated```
-	* 即 模拟 shadow dom。
-	* 假的 shadow dom，fake。
-	* 如果要运用真的 shadow dom，需要配置 ```ViewEncapsulation.Native```
+	* 即 模拟 ```shadow dom```。
+	* 假的 ```shadow dom```，fake。
+	* 如果要运用真的 ```shadow dom```，需要配置 ```ViewEncapsulation.Native```
 	* 配置说明的地址:[https://angular.io/api/core/ViewEncapsulation](https://angular.io/api/core/ViewEncapsulation)
 
 * 至于 ```ViewEncapsulation``` 的各个枚举类型的意义，下文会细细说来。
 
 ## Component级别的配置
-* 若要 chrome 中调试时显示出 ```#shadow-root```， 即 使用原生的 ```shadow dom``` 能力， 即 让Angular不使用默认的 ```Emulated``` 。
-	* 可以在Component的元数据上进行配置，过程与效果如下：
+* 若要 chrome 中调试时显示出 ```#shadow-root```
+	* 即 使用原生的 ```shadow dom``` 能力
+	* 即 让Angular不使用默认的 ```Emulated``` 。
+	* 可以在Component的元数据上进行配置，代码与效果如下：
 
 	![MacDown Screenshot](shadow-8.png)
 	
-* Component的API介绍里，有提到这个接口：[https://angular.cn/api/core/Component](https://angular.cn/api/core/Component)
+* ```Component``` 的API介绍里，有提到这个接口：[https://angular.cn/api/core/Component](https://angular.cn/api/core/Component)
 
 ## 全局配置
 * 显然，我如果要用 ```shadow dom``` 能力，不至于每个 ```Component``` 去配置。
@@ -144,7 +146,7 @@
 	* ```ViewEncapsulation.None```  :寻常方式处理组件，样式被直接塞到head标签中。
 	* ```ViewEncapsulation.Emulated```  :模拟shadow dom能力，会修改样式的名称。
 	* ```ViewEncapsulation.Native``` :使用原生的shadow dom能力。
-* 下面以Angular为例子为基础，看下三种配置下的能力表现。
+* 下面以Angular2新手项目为例子为基础，看下三种配置下的能力表现。
 	* [https://angular.cn/generated/live-examples/toh-pt3/eplnkr.html](https://angular.cn/generated/live-examples/toh-pt3/eplnkr.html)
 	* 该例子包括一个组件 ```app.component.ts``` ，其template中有个h2标签。
 	* 这个组件有个子组件 ```hero-detail.component.ts``` ,其template中也有个h2标签。
@@ -200,7 +202,7 @@
 * ```shadow dom``` 主要能力在于封装与重用：
 	* 重用，提升开发效率。
 	* 封装，减少样式冲突的出错概率。
-* 且由于其封装，可避免组件内部的变动，影响到全局。
+* 上文的例子主要解释样式上的封装，```shadow dom``` 更重要的是重绘也因为封装，被局限在dom上了。
 	* 网页性能大瓶颈在页面dom变化的重绘上。
 	* 即，如果变化发生在组件内部，只需要重绘组件dom，而不用重绘整个页面。
 	* 当然，如果有必要，也是要重绘整个页面的。
@@ -209,5 +211,6 @@
 ## 总结
 * 之所以了解 ```shadow dom```，是因为react 的 ```virtual dom```。
 	* 要比快不是。
+	* 但是默认Angular2 是未使用shadow dom的性能提升能力的，如果要比快，记得开启 Native能力。
 * Angular2 使用脏检查来减少dom绘制次数，用shadow dom来减少绘制区域。
 * 为什么默认Angular2 不用原生shadow dom能力呢，有坑？
