@@ -15,7 +15,6 @@
 * 要求 ```webpack2```。
 * 使用插件 ```uglifyjs-webpack-plugin```。
 
-	
 	```js
 	const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 	
@@ -121,7 +120,7 @@
 	* 每个文件就是一个模块，有自己的作用域。在一个文件里面定义的变量、函数、类，都是私有的，对其他文件不可见。
 * 例子
 
-	```
+	```js
 	//定义
 	var x = 5;
 	var addX = function (value) {
@@ -141,7 +140,7 @@
 	* 重点：异步，浏览器
 	* 写法很多，仅举一例
 	
-	```
+	```js
 	define("module", [ "dep1", "dep2"], function( dep1, dep2 ){
 	    export.do = function(){
 	    }
@@ -153,7 +152,7 @@
 	* 重点：异步，浏览器
 	* 写法很多，仅举一例
 	
-	```
+	```js
 	define('module', ['dep'], function(require, exports, module) {
 	
 	  exports = {
@@ -176,7 +175,7 @@
 * ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。
 * 集中导入导出的例子：
 	
-	```
+	```js
 	//导出1
 	export {moduleX} ；
 	//导出2
@@ -192,13 +191,10 @@
 	//导入3
 	import {moduleX as fun} from 'xx';
 		
-		
-		
 	//导出4
 	export default function(){}
 	//导入4
 	import Unknown from 'xx';
-	
 		
 	```
 	
@@ -238,10 +234,8 @@
 	        typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	            (factory((global.acorn = global.acorn || {})));
 	}(this, (function (exports) {
-	
-	        
+		 	//逻辑代码
 	        exports.services = "";
-	
 	    }
 	)));
 	
@@ -263,9 +257,8 @@
 	            //不知道是什么，acorn是个类似esprima的 ast解析工具
 	        }
 	    }
-	
 	}(this, (function (exports) {
-	        
+	         //逻辑代码
 	        exports.services = "";
 	
 	    }
@@ -281,7 +274,6 @@
 			/* 0 */         //这是webpack的chunkid
 			/***/
 			(function (module, exports, __webpack_require__) {
-			
 			    "use strict";
 			    //js代码正文
 			})
@@ -298,4 +290,4 @@
 	* 上文解释过，使用require，会导致被require文件被执行，产生的 ```side effect``` 无法评估，故无法删代码。
 * 问题3：听说过 ```closure``` 么，相比于uglify，他有更激进的无效代码删除方案，有空，为何不自己去看看呢。
 * 问题4：ES6 Module 的能力，还带来了什么有趣的应用。
-	* webpack3 的 [```Scope Hosting```(作用域提升)](https://zhuanlan.zhihu.com/p/27828233)，可提高代码执行效率。
+	* webpack3 的 [Scope Hosting(作用域提升)](https://zhuanlan.zhihu.com/p/27828233)，可提高代码执行效率。
