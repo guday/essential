@@ -1,6 +1,6 @@
 # shadow dom和Angular2
 
-###### seraphwu
+###### seraphwu@20170808
 
 
 ## 本文要讲什么
@@ -197,7 +197,14 @@
 
 	![MacDown Screenshot](shadow-14.png)
 
+## Emulated 与 Native 的异同
+* Emulated 模拟了样式的组件化，组件内部样式不会影响外部样式。
+* Native 的组件化更强，不仅组件内部样式不会影响外部样式
+	* 甚至外部样式也不会影响到内部。
+	* 除非某几个特殊的公共样式
+	* 除非使用特殊语法
 
+	
 ## shadow dom 怎么提升性能了
 * ```shadow dom``` 主要能力在于封装与重用：
 	* 重用，提升开发效率。
